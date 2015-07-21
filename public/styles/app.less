@@ -1,0 +1,52 @@
+/* 
+// App Stylesheet
+// --------------
+*/
+
+// Import Bootstrap
+@import "../../node_modules/bootstrap/less/bootstrap.less";
+
+// Give the navigation some padding
+.nav {
+	margin: 10px 0;
+	
+	// Style the active links
+	a.active {
+		font-weight: bold;
+	}
+}
+
+
+.gameboard {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.tile {
+  height: 100px;
+  width: 100px;
+  border: 1px solid gray;
+  display: inline-block;
+  margin: -1px -1px 0 0;
+  float: left;
+  cursor: pointer;
+
+  .content {
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+  }
+
+  &.active {
+    cursor: initial;
+  }
+  &.x .content {
+    background-color: green;
+  }
+  &.y .content{
+    background-color: red;
+  }
+  &.winner {
+    background-color: yellow;
+  }
+}
