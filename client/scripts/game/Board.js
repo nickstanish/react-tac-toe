@@ -93,8 +93,16 @@ function renderBoard () {
         />);
   }
   return (
-      <div className="gameboard">
-        {cells}
+      <div>
+        <div>
+          <h3> Turn: 
+            <div className={'showTurn ' + this.state.turn}>
+            </div>
+          </h3>
+        </div>
+        <div className="gameboard">
+          {cells}
+        </div>
       </div>
     );
 }
