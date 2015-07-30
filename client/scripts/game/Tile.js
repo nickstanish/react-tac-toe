@@ -10,10 +10,13 @@ var Tile = React.createClass(_options);
 function renderTile () {
   var value = "";
   if (this.props.active){
-    value = 'active ' + this.props.owner;
+    value += ' active ' + this.props.owner;
+  }
+  else {
+    value += ' inactive '; 
   }
   if (this.props.win) {
-    value += ' winner';
+    value += ' winner ';
   }
   return (
       <div className={"tile " + value}

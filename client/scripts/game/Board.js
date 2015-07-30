@@ -100,7 +100,7 @@ function renderBoard () {
             </div>
           </h3>
         </div>
-        <div className="gameboard">
+        <div className={"gameboard turn-" + this.state.turn}>
           {cells}
         </div>
       </div>

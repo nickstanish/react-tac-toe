@@ -16,6 +16,9 @@
 	}
 }
 
+@color-x: rgb(255, 0, 0);
+@color-y: rgb(0, 255, 0);
+
 
 .gameboard {
   width: 300px;
@@ -29,11 +32,17 @@
   position: absolute;
   margin-top: 2px;
   &.x {
-    background-color: green;
+    background-color: @color-x;
   }
   &.y {
-    background-color: red;
+    background-color: @color-y;
   }
+}
+.turn-x .tile.inactive:hover .content {
+  background-color: lighten(@color-x, 40%);
+}
+.turn-y .tile.inactive:hover .content {
+  background-color: lighten(@color-y, 40%);
 }
 
 .tile {
@@ -55,10 +64,10 @@
     cursor: initial;
   }
   &.x .content {
-    background-color: green;
+    background-color: @color-x;
   }
   &.y .content{
-    background-color: red;
+    background-color: @color-y;
   }
   &.winner {
     background-color: yellow;
