@@ -1,5 +1,6 @@
-var React = require('react'),
-	Router = require('react-router');
+var React = require('react');
+var Router = require('react-router');
+var GameBoard = require('./game/Board').GameBoard;
 
 var Header = React.createClass({
 	render: function() {
@@ -11,40 +12,23 @@ var Header = React.createClass({
 	}
 });
 
-var PageNav = React.createClass({
-	render: function() {
-		return (
-			<div className="nav">
-				<Router.Link to="home">Home</Router.Link>
-				&nbsp; | &nbsp;
-				<Router.Link to="about">About</Router.Link>
-			</div>
-		);
-	}
-});
 
 var App = React.createClass({
-	render: function() {
+	render: function() {	
 		return (
 			<div className="container">
 				<Header />
-				<PageNav />
-				<Router.RouteHandler/>
+				<div className="game-wrapper">
+          <GameBoard />
+        </div>
 			</div>
 		);
 	}
 });
 
-var routes = {
-	Home: require('../routes/Home'),
-	About: require('../routes/About')
-};
 
 var routes = (
 	<Router.Route name="app" path="/" handler={App}>
-		<Router.Route name="home" path="/" handler={routes.Home}/>
-		<Router.Route name="about" path="/about" handler={routes.About}/>
-		<Router.DefaultRoute handler={routes.Home}/>
 	</Router.Route>
 );
 

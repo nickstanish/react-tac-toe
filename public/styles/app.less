@@ -22,6 +22,7 @@
 
 .gameboard {
   width: 300px;
+  height: 300px;
   margin: 0 auto;
 }
 .showTurn {
@@ -71,5 +72,25 @@
   }
   &.winner {
     background-color: yellow;
+  }
+}
+
+@replay: rgba(255,255,255,0.3);
+.replay:hover {
+  cursor: pointer;
+  background-color: darken(@replay, 40%);;
+}
+.replay {
+    height: 300px;
+    width: 300px;
+    z-index: 1000;
+    position: relative;
+    top: -318px;
+    background-color: @replay;
+
+  h3 {
+    padding-top: 45%;
+    text-align: center;
+    color: #4f4f4f;
   }
 }

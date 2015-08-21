@@ -7,7 +7,8 @@ var _options = {
   tileHandler: cellClick,
   displayName: "GameBoard",
   toggleTurn: toggleTurn,
-  checkWin: checkWin
+  checkWin: checkWin,
+  replay: replay
 };
 
 var GameBoard = React.createClass(_options);
@@ -24,7 +25,8 @@ function getInitialGameState () {
   return {
     tiles: tiles,
     turn: Math.random() > 0.5 ? 'x' : 'y',
-    winner: null
+    winner: null,
+    replay: false
   };
 }
 
@@ -42,8 +44,17 @@ function cellClick(cellIndex) {
   }
   this.state.tiles[cellIndex].active = true;
   this.state.tiles[cellIndex].owner = this.state.turn;
-  this.checkWin();
-  this.toggleTurn();
+  if (this.checkWin()) {
+    var self = this;
+    window.setTimeout(function (){
+      self.setState({
+        replay: true
+      });
+    }, 500);
+  } else {
+    this.toggleTurn();
+  }
+  
   this.setState(this.state);
 }
 
@@ -78,6 +89,11 @@ function checkWin() {
       tiles[winningCells[i]].win = true;
     }
   }
+  return winningCells.length > 0;
+}
+
+function replay () {
+  this.setState(this.getInitialState());
 }
 
 function renderBoard () {
@@ -85,12 +101,22 @@ function renderBoard () {
   for (var i = 0; i < this.state.tiles.length; i++) {
     var tile = this.state.tiles[i];
       cells.push(<Tile
-        key={'cell-' + i}
+        key={"cell-" + i}
         active={tile.active}
         win={tile.win}
         owner={tile.owner}
-        clickhandler={this.tileHandler.bind(this, i)}
-        />);
+        clickhandler={this.tileHandler.bind(this, i)} /> 
+      );
+  }
+  
+  if (this.state.replay) {
+    var clearfix = <div className="clearfix" key="clearfix" />;
+    var replayOverlay = (<div className="replay" key="replay" onClick={this.replay} >
+        <h3>Click to play again</h3>
+      </div>
+      );
+    cells.push(clearfix);
+    cells.push(replayOverlay);
   }
   return (
       <div>
