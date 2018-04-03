@@ -1,0 +1,97 @@
+:root {
+  --color1: rgba(255, 0, 0, 1);
+  --color2: rgba(0, 255, 0, 1);
+  --replay: rgba(255, 255, 255 ,0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.gameboard {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.showTurn {
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  margin-left: 10px;
+  position: absolute;
+  margin-top: 2px;
+}
+
+.showTurn.x {
+  background-color: var(--color1);
+}
+
+.showTurn.y {
+  background-color: var(--color2);
+}
+
+.turn-x .tile.inactive:hover .content {
+  background-color: rgba(255, 204, 204, 1);
+}
+.turn-y .tile.inactive:hover .content {
+  background-color: rgba(204, 255, 204, 1);
+}
+
+.tile {
+  height: 100px;
+  width: 100px;
+  border: 1px solid gray;
+  display: inline-block;
+  margin: -1px -1px 0 0;
+  float: left;
+  cursor: pointer;
+}
+
+.tile .content {
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+}
+
+.tile.active {
+  cursor: initial;
+}
+
+.tile.x .content {
+  background-color: var(--color1);
+}
+
+.tile.y .content{
+  background-color: var(--color2);
+}
+
+.tile.winner {
+  background-color: yellow;
+}
+
+
+.replay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--replay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.replay:hover {
+  cursor: pointer;
+  background-color: rgba(102, 102, 102, 0.3);
+}
+
+.replay h3 {
+  text-align: center;
+  color: #4f4f4f;
+  margin: 0;
+  line-height: 1;
+}
